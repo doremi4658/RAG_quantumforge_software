@@ -10,7 +10,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Токен бота (вставьте свой)
-BOT_TOKEN = ""
+BOT_TOKEN = "8257783364:AAH45RkYwUqSPxjf_dEskGulbdeK-e1ihe8"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработчик команды /start"""
