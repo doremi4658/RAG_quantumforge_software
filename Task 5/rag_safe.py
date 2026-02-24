@@ -9,7 +9,7 @@ CHROMA_PATH = os.path.join(os.path.dirname(__file__), "..", "Task 3", "chroma_db
 COLLECTION_NAME = "starwars_modified"
 EMBEDDING_MODEL = "intfloat/multilingual-e5-small"
 OLLAMA_URL = "http://localhost:11434/api/generate"
-OLLAMA_MODEL = "mistral"  # или "llama3", "llama3.2"
+OLLAMA_MODEL = "mistral"
 # ================================
 
 embedding_model = SentenceTransformer(EMBEDDING_MODEL)

@@ -9,7 +9,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ===== ВСТАВЬТЕ СВОЙ ТОКЕН =====
-BOT_TOKEN = " "
+BOT_TOKEN = ""
 # =================================
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
