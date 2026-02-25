@@ -1,0 +1,25 @@
+@startuml
+actor "Планировщик (cron)" as Cron
+participant "Скрипт update_index.py" as Script
+participant "Папка new_docs/" as Source
+participant "Модель эмбеддингов" as Model
+participant "ChromaDB (индекс)" as VectorDB
+participant "Лог-файл update.log" as Log
+
+Cron -> Script : Запуск по расписанию (ежедневно в 6:00)
+Script -> Source : Сканирование новых .txt файлов
+Source --> Script : Список новых файлов
+
+loop для каждого нового файла
+    Script -> Script : Чтение файла
+    Script -> Script : Разбиение на чанки\n(RecursiveCharacterTextSplitter)
+    Script -> Model : Генерация эмбеддингов
+    Model --> Script : Векторы
+    Script -> VectorDB : Добавление чанков\n(с метаданными)
+    VectorDB --> Script : Подтверждение
+end
+
+Script -> Log : Запись лога (время, кол-во чанков, ошибки)
+Log --> Script : Ок
+Script -> Cron : Завершение
+@enduml
