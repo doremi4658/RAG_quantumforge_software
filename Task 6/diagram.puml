@@ -10,7 +10,7 @@ Cron -> Script : Запуск по расписанию (ежедневно в 6
 Script -> Source : Сканирование новых .txt файлов
 Source --> Script : Список новых файлов
 
-loop для каждого нового файла
+loop для каждого новогj файла
     Script -> Script : Чтение файла
     Script -> Script : Разбиение на чанки\n(RecursiveCharacterTextSplitter)
     Script -> Model : Генерация эмбеддингов

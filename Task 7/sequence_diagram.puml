@@ -1,0 +1,24 @@
+@startuml
+actor "Скрипт evaluate.py" as Evaluator
+participant "Модель эмбеддингов" as Embedder
+participant "ChromaDB (тестовый индекс)" as VectorDB
+participant "Ollama (LLM)" as LLM
+participant "Лог-файл CSV" as Log
+
+Evaluator -> Evaluator : Загрузить golden_questions.txt
+loop для каждого вопроса
+    Evaluator -> Embedder : Векторизация вопроса
+    Embedder --> Evaluator : Эмбеддинг
+    Evaluator -> VectorDB : Поиск похожих чанков
+    VectorDB --> Evaluator : Список чанков (текст, метаданные)
+    alt чанки найдены
+        Evaluator -> Evaluator : Формирование промпта (контекст + CoT)
+        Evaluator -> LLM : Запрос к LLM
+        LLM --> Evaluator : Ответ
+    else чанков нет
+        Evaluator -> Evaluator : Ответ = "Я не знаю..."
+    end
+    Evaluator -> Evaluator : Оценка корректности\n(по ключевым словам/эвристикам)
+    Evaluator -> Log : Запись в CSV (вопрос, ответ, источники, длина, статус)
+end
+@enduml
