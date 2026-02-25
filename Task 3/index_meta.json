@@ -1,0 +1,9 @@
+{
+  "model": "intfloat/multilingual-e5-small",
+  "embedding_dim": 384,
+  "chunk_size": 300,
+  "chunk_overlap": 50,
+  "num_documents": 31,
+  "num_chunks": 38,
+  "time_seconds": 0.63
+}
